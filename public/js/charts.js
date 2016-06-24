@@ -145,7 +145,11 @@ function initialiseSocketIO() {
         Expressdata.removeRow(0);            
       }
     }
-    Expressdata.addRow([new Date(express['timestamp']),(express.response.duration), (express.request.method)]);
+    Expressdata.addRow([new Date(express['timestamp']),(express.response.duration), 
+                        'Request: ' +(express.request.method)+'\n'+
+                        'URL: '+(express.request.url)+'\n'+
+                        'Response: ' +(express.response.status)+'\n'+
+                        'Data: ' +(express.process.data)]);
     Expresschart.draw(Expressdata, Expressoptions);
   });
 
